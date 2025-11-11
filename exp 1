@@ -1,11 +1,97 @@
-CREATE DATABASE student_db4;
-USE student_db4;
-CREATE TABLE student (
-    reg_no INT PRIMARY KEY,
-    name VARCHAR(50),
-    gender VARCHAR(10),
-    dob DATE,
-    mobile_no VARCHAR(15),
-    city VARCHAR(30)
+EXP1.1
+CREATE DATABASE COLLEGE_DB1;
+USE COLLEGE_DB1;
+CREATE TABLE STUDENT (
+    RegNo      INT(3) PRIMARY KEY,
+    Name       VARCHAR(30),
+    Gender     VARCHAR(15),
+    DOB        DATE,
+    MobileNo   BIGINT,
+    City       VARCHAR(15)
 );
-select*from student;
+INSERT INTO STUDENT (RegNo, Name, Gender, DOB, MobileNo, City)
+VALUES (101, 'Laya', 'Female', '2003-05-14', 9876543210, 'Hosur'),
+       (102, 'Pooja', 'Female', '2007-08-16', 9123456780, 'Pollachi'),
+       (103, 'Sujay', 'Male', '2007-10-25', 9867541230, 'Chennai');
+SELECT * FROM STUDENT;
+
+EXP1.2
+CREATE DATABASE COLLEGE_1;
+USE COLLEGE_1;
+CREATE TABLE FACULTY (
+    FacNo     VARCHAR(4) PRIMARY KEY,
+    FacName   VARCHAR(30),
+    Gender    VARCHAR(15),
+    DOB       DATE,
+    DOJ       DATE,
+    MobileNo BIGINT(10)
+);
+INSERT INTO FACULTY (FacNo, FacName, Gender, DOB, DOJ, MobileNo)
+VALUES ('F001', 'POOJA', 'Female','1985-06-12','2010-07-01', 9876543210),
+ ('F002', 'Rajesh Kumar', 'Male', '1979-03-25', '2008-06-15', 9823456789),
+ ('F003', 'Neha Verma', 'Female','1990-09-10', '2015-12-10', 9812345678);
+
+SELECT * FROM FACULTY;
+
+
+1.3
+CREATE DATABASE COLLEGE_3;
+USE COLLEGE_3;
+CREATE TABLE DEPARTMENT (
+    DeptNo    VARCHAR(4) PRIMARY KEY,
+    DeptName  VARCHAR(15),
+    DeptHead  VARCHAR(4)
+);
+INSERT INTO DEPARTMENT (DeptNo, DeptName, DeptHead)
+VALUES ('D003', 'Mechanical', 'F003'),
+ ('D004', 'Civil', 'F004'),
+ ('D005', 'IT', 'F005');
+ SELECT * FROM DEPARTMENT;
+
+
+1.4
+CREATE DATABASE COLLEGE_5;
+USE COLLEGE_5;
+CREATE TABLE FACULTY(
+FacNo VARCHAR(4) PRIMARY KEY,
+FacName VARCHAR(30),
+Department VARCHAR(20)
+);
+CREATE TABLE COURSE (
+    CourseNo    VARCHAR(3) PRIMARY KEY,
+    CourseDesc  VARCHAR(40),
+    CourseType  VARCHAR(15),
+    SemNo       CHAR(1),
+    HallNo      VARCHAR(4),
+    FacNo       VARCHAR(4),
+    CONSTRAINT fk_faculty FOREIGN KEY (FacNo)
+        REFERENCES FACULTY(FacNo)
+);
+INSERT INTO COURSE (CourseNo, CourseDesc, CourseType, SemNo, HallNo, FacNo)
+VALUES ('C03', 'Operating Systems', 'Core', '4', 'H103', 'F003'),
+ ('C04', 'Artificial Intelligence', 'Elective', '6', 'H104', 'F004'),
+ ('C05', 'Web Technologies', 'Elective', '5', 'H105', 'F005');
+SELECT * FROM COURSE;
+
+
+
+1.5
+CREATE DATABASE COLLEGE_7;
+USE COLLEGE_7;
+CREATE TABLE FACULTY (
+    FacNo     VARCHAR(4) PRIMARY KEY,
+    FacName   VARCHAR(30),
+    Gender    VARCHAR(15),
+    DOB       DATE,
+    DOJ       DATE,
+    MobileNo BIGINT(10)
+);
+INSERT INTO FACULTY (FacNo, FacName, Gender, DOB, DOJ, MobileNo)
+VALUES ('F001', 'POOJA', 'Female','1985-06-12','2010-07-01', 9876543210),
+ ('F002', 'Rajesh Kumar', 'Male', '1979-03-25', '2008-06-15', 9823456789),
+ ('F003', 'Neha', 'Female','1990-09-10', '2015-12-10', 9812345678);
+
+SELECT * FROM FACULTY;
+ALTER TABLE FACULTY
+ADD Dept VARCHAR(10);
+DESC FACULTY;

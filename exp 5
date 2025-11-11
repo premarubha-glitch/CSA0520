@@ -1,0 +1,200 @@
+5.1
+create database student_3;
+use student_3;
+CREATE TABLE STUDENT (
+    RegisterNo VARCHAR(15),
+    StudentName VARCHAR(50),
+    DOB DATE,
+    Course VARCHAR(30),
+    Year INT,
+    Department VARCHAR(30)
+);
+INSERT INTO STUDENT (RegisterNo, StudentName, DOB, Course, Year, Department)
+VALUES
+('191711001', 'Laya Shree', '2005-06-14', 'B.Tech', 3, 'CSE'),
+('191711002', 'Ravi Kumar', '2004-08-25', 'B.Tech', 3, 'ECE'),
+('191711003', 'Meena Devi', '2005-01-12', 'B.Sc', 2, 'IT'),
+('191711004', 'Arun Raj', '2004-09-30', 'B.Com', 1, 'Commerce');
+SELECT *from student;
+
+5.2
+create database student_4;
+use student_4;
+CREATE TABLE STUDENT (
+    RegisterNo VARCHAR(15),
+    StudentName VARCHAR(50),
+    Gender CHAR(1),
+    DOB DATE,
+    Course VARCHAR(30),
+    Year INT,
+    Department VARCHAR(30)
+);
+INSERT INTO STUDENT (RegisterNo, StudentName, Gender, DOB, Course, Year, Department)
+VALUES
+('191711001', 'Laya Shree', 'F', '2005-06-14', 'B.Tech', 3, 'CSE'),
+('191711002', 'Ravi Kumar', 'M', '2004-08-25', 'B.Tech', 3, 'ECE'),
+('191711003', 'Meena Devi', 'F', '2005-01-12', 'B.Sc', 2, 'IT'),
+('191711004', 'Arun Raj', 'M', '2004-09-30', 'B.Com', 1, 'Commerce'),
+('191711005', 'Priya Sharma', 'F', '2005-11-20', 'BBA', 2, 'Management');
+SELECT *FROM STUDENT
+WHERE Gender = 'F';
+
+5.3
+create database student_5;
+use student_5;
+CREATE TABLE STUDENT (
+    RegisterNo VARCHAR(15),
+    StudentName VARCHAR(50),
+    Gender CHAR(1),
+    DOB DATE,
+    CourseID VARCHAR(10),
+    CourseName VARCHAR(50),
+    Year INT,
+    Department VARCHAR(30)
+);
+INSERT INTO STUDENT (RegisterNo, StudentName, Gender, DOB, CourseID, CourseName, Year, Department)
+VALUES
+('191711001', 'Laya Shree', 'F', '2005-06-14', 'C001', 'B.Tech', 3, 'CSE'),
+('191711002', 'Ravi Kumar', 'M', '2004-08-25', 'C002', 'B.Tech', 3, 'ECE'),
+('191711003', 'Meena Devi', 'F', '2005-01-12', 'C001', 'B.Sc', 2, 'IT'),
+('191711004', 'Arun Raj', 'M', '2004-09-30', 'C003', 'B.Com', 1, 'Commerce'),
+('191711005', 'Priya Sharma', 'F', '2005-11-20', 'C001', 'BBA', 2, 'Management');
+SELECT RegisterNo, StudentName, CourseID, CourseName
+FROM STUDENT
+WHERE CourseID = 'C001';
+
+
+5.4
+create database faculty_7;
+use faculty_7;
+create table faculty(
+facname varchar(15),
+facno varchar(5),
+doj date
+);
+insert into faculty(facname,facno,doj)
+values
+('layaa','123','2009-11-23'),
+('subbu','456','2019-03-06'),
+('balaji','789','2012-05-05'),
+('abhi','101','2020-11-09'),
+('snoop','112','2010-12-14');
+select facname,facno,doj
+from faculty
+where doj<'2014-11-14';
+
+5.5
+create database course_8;
+use course_8;
+create table course(
+coursename varchar(15),
+hallno varchar(5),
+courseno varchar(4)
+);
+insert into course(coursename,hallno,courseno)
+values
+('cse','h001','007'),
+('AIML','h003','009'),
+('AIDS','h004','011'),
+('BME','h001','013'),
+('CSEDS','h005','015');
+select coursename,hallno,courseno
+from course
+where hallno<>'h001';
+
+5.6
+create database student_17;
+use student_17;
+create table student(
+studentname varchar(15),
+regno varchar(5),
+dob date
+);
+insert into student(studentname,regno,dob)
+values
+('sharavana','123','2009-11-23'),
+('subbu','456','2019-03-06'),
+('balaji','789','2012-05-05'),
+('abhi','101','2020-11-09'),
+('shalini','112','2010-12-14');
+select*from student
+where studentname like'%sh%';
+
+5.7
+create database student_16;
+use student_16;
+create table student(
+studentname varchar(15),
+regno varchar(5),
+dob date
+);
+insert into student(studentname,regno,dob)
+values
+('layaa','123','2009-11-23'),
+('shabana','456','2019-03-06'),
+('balaji','789','2012-05-05'),
+('akash','101','2020-11-09'),
+('shalini','112','2010-12-14');
+select*from student
+where studentname like'%sh';
+
+5.8
+create database student_21;
+use student_21;
+create table student(
+studentname varchar(15),
+regno varchar(5),
+dob date,
+city varchar(15)
+);
+insert into student(studentname,regno,dob,city)
+values
+('layaa','123','2009-11-23','salwar'),
+('shabana','456','2019-03-06','salem'),
+('balaji','789','2012-05-05','chennai'),
+('akash','101','2020-11-09','tpt'),
+('shalini','112','2010-12-14','vkp');
+select*from student
+where city like'%sal%';
+
+5.9
+CREATE DATABASE COLLEGE_44;
+USE COLLEGE_44;
+CREATE TABLE STUDENT(
+REGNO VARCHAR(15) PRIMARY KEY,
+S1NAME VARCHAR(50) NOT NULL,
+DOB DATE,
+DEPTNO VARCHAR(10),
+GENDER VARCHAR(10),
+ADDRESS VARCHAR(100)
+);
+INSERT INTO STUDENT (RegNo, S1Name, DOB, DeptNo, Gender, Address)
+VALUES 
+('191711341', 'SUJAY', '2002-04-15', 'D01', 'Male', 'Salem'),
+('191711342', 'POOJA', '2001-11-22', 'D02', 'Female', 'Salem'),
+('191711343', 'GRISHA', '2002-06-10', 'D01', 'Male', 'Madurai'),
+('191711344', 'ARTHI', '2001-09-03', 'D03', 'Female', 'coimbatore');
+SELECT RegNo, S1Name, DOB, DeptNo, Gender, Address
+FROM STUDENT
+WHERE LENGTH (S1name)<>'6';
+
+5.10
+CREATE DATABASE COLLEGE_46;
+USE COLLEGE_46;
+CREATE TABLE STUDENT(
+REGNO VARCHAR(15) PRIMARY KEY,
+S1NAME VARCHAR(50) NOT NULL,
+DOB DATE,
+DEPTNO VARCHAR(10),
+GENDER VARCHAR(10),
+ADDRESS VARCHAR(100)
+);
+INSERT INTO STUDENT (RegNo, S1Name, DOB, DeptNo, Gender, Address)
+VALUES 
+('191711341', 'PRIYA', '2002-04-15', 'D01', 'Male', 'Salem'),
+('191711342', 'SHAM', '2001-11-22', 'D02', 'Female', 'Salem'),
+('191711343', 'AMRITHA', '2002-06-10', 'D01', 'Male', 'Madurai'),
+('191711344', 'RAM', '2001-09-03', 'D03', 'Female', 'coimbatore');
+SELECT RegNo, S1Name, DOB, DeptNo, Gender, Address
+FROM STUDENT
+WHERE S1Name like '%AM%';

@@ -1,0 +1,86 @@
+7.1
+create database course_registration_db24;
+use course_registration_db24;
+CREATE TABLE Course_Registration (
+    student_id VARCHAR(10),
+    student_name VARCHAR(50),
+    course_id VARCHAR(10),
+    course_description VARCHAR(100)
+);
+INSERT INTO Course_Registration VALUES ('S001', 'Laya', 'C001', 'Database Management');
+INSERT INTO Course_Registration VALUES ('S002', 'pooja', 'C001', 'Database Management');
+INSERT INTO Course_Registration VALUES ('S003', 'Meena', 'C002', 'Computer Networks');
+INSERT INTO Course_Registration VALUES ('S004', 'prema', 'C001', 'Database Management');
+INSERT INTO Course_Registration VALUES ('S005', 'haritha', 'C002', 'Computer Networks');
+SELECT 
+    course_description,
+    COUNT(student_id) AS number_of_students
+FROM 
+    Course_Registration
+GROUP BY 
+    course_description;
+
+7.2
+create database course_registration_db22;
+use course_registration_db22;
+CREATE TABLE Course_Registration (
+    student_id VARCHAR(10),
+    student_name VARCHAR(50),
+    course_id VARCHAR(10),
+    course_description VARCHAR(100)
+);
+INSERT INTO Course_Registration VALUES ('S001', 'Laya', 'C001', 'Database Management');
+INSERT INTO Course_Registration VALUES ('S001', 'prema', 'C002', 'Computer Networks');
+INSERT INTO Course_Registration VALUES ('S002', 'pooja', 'C001', 'Database Management');
+INSERT INTO Course_Registration VALUES ('S002', 'Laya', 'C003', 'Computer Networks');
+
+SELECT 
+    student_id,
+    student_name,
+    COUNT(course_id) AS number_of_courses
+FROM 
+    Course_Registration
+GROUP BY 
+    student_id, student_name;
+
+7.3
+create database student_db;
+use student_db;
+CREATE TABLE Student (
+    reg_no VARCHAR(10),
+    student_name VARCHAR(50),
+    gender VARCHAR(10),
+    mobile_no VARCHAR(15)
+);
+INSERT INTO Student VALUES ('S001', 'Laya', 'Female', '9876543210');
+INSERT INTO Student VALUES ('S003', 'Ravi', 'Male', '8765432109');
+INSERT INTO Student VALUES ('S002', 'Priya', 'Female', '7654321098');
+INSERT INTO Student VALUES ('S005', 'Arjun', 'Male', '6543210987');
+INSERT INTO Student VALUES ('S004', 'Meena', 'Female', '9123456780');
+SELECT 
+    student_name,
+    gender,
+    mobile_no
+FROM 
+    Student
+ORDER BY 
+    reg_no ASC;
+
+7.4
+create database faculty_db01;
+use faculty_db01;
+CREATE TABLE Faculty (
+    fac_no VARCHAR(10),
+    fac_name VARCHAR(50),
+    gender VARCHAR(10),
+    dob DATE,
+    doj DATE,
+    mobile_no VARCHAR(15)
+);
+INSERT INTO Faculty VALUES ('F001', 'layaa', 'Male', '1975-04-12', '2005-06-01', '9876543210');
+INSERT INTO Faculty VALUES ('F002', 'deva', 'Female', '1980-08-20', '2008-07-15', '8765432109');
+INSERT INTO Faculty VALUES ('F003', 'prema', 'Male', '1985-12-05', '2010-01-10', '7654321098');
+INSERT INTO Faculty VALUES ('F004','haritha', 'Female', '1990-03-18', '2015-09-25', '6543210987');
+INSERT INTO Faculty VALUES ('F005', 'pooja', 'Male', '1972-11-30', '2000-04-10', '9123456780');
+SELECT *FROM Faculty
+ORDER BY dob ASC;

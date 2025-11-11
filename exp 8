@@ -1,0 +1,131 @@
+8.1
+CREATE DATABASE StudentDB5;
+USE StudentDB5;
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    Score INT
+);
+INSERT INTO Student (StudentID, StudentName, Score) VALUES
+(101, 'PREMA', 85),
+(102, 'HARITHAA', 72),
+(103, 'MEENA', 91),
+(104, 'LAYAA', 67),
+(105, 'DEVA', 88);
+SELECT 
+    StudentName,
+    Score
+FROM 
+    Student
+WHERE 
+    Score > (SELECT AVG(Score) FROM Student);
+
+8.2
+CREATE DATABASE StudentAssessmentDB2;
+USE StudentAssessmentDB2;
+CREATE TABLE Assessment (
+    StudentID INT,
+    StudentName VARCHAR(50),
+    TestName VARCHAR(50),
+    Marks INT
+);
+INSERT INTO Assessment (StudentID, StudentName, TestName, Marks) VALUES
+(101, 'POOJA', 'Math Test', 85),
+(102, 'LAYAA', 'Science Test', 78),
+(103, 'PREMA', 'English Test', 92),
+(101, 'POOJA', 'Science Test', 88),
+(104, 'HARITHA', 'Math Test', 80),
+(103, 'PREMA', 'Math Test', 95),
+(102, 'LAYAA', 'English Test', 81);
+SELECT 
+    StudentID,
+    StudentName,
+    COUNT(TestName) AS NoOfTests
+FROM 
+    Assessment
+GROUP BY 
+    StudentID, StudentName
+HAVING 
+    COUNT(TestName) > 1;
+
+8.3
+CREATE DATABASE CollegeDB1;
+USE CollegeDB1;
+CREATE TABLE Faculty (
+    FacultyID INT PRIMARY KEY,
+    FacultyName VARCHAR(50),
+    Department VARCHAR(30),
+    JoinDate DATE
+);
+INSERT INTO Faculty (FacultyID, FacultyName, Department, JoinDate) VALUES
+(201, 'MEENA', 'Computer Science', '2020-06-10'),
+(202, 'LAYAA', 'Mathematics', '2021-01-15'),
+(203, 'HARITHAA', 'Physics', '2022-03-12'),
+(204, 'DEVA', 'Chemistry', '2023-09-20'),
+(205, 'PREMA', 'English', '2024-02-10');
+SELECT 
+    FacultyName,
+    Department,
+    JoinDate
+FROM 
+    Faculty
+WHERE 
+    JoinDate = (SELECT MAX(JoinDate) FROM Faculty);
+
+8.3
+CREATE DATABASE CollegeDB1;
+USE CollegeDB1;
+CREATE TABLE Faculty (
+    FacultyID INT PRIMARY KEY,
+    FacultyName VARCHAR(50),
+    Department VARCHAR(30),
+    JoinDate DATE
+);
+INSERT INTO Faculty (FacultyID, FacultyName, Department, JoinDate) VALUES
+(201, 'MEENA', 'Computer Science', '2020-06-10'),
+(202, 'LAYAA', 'Mathematics', '2021-01-15'),
+(203, 'HARITHAA', 'Physics', '2022-03-12'),
+(204, 'DEVA', 'Chemistry', '2023-09-20'),
+(205, 'PREMA', 'English', '2024-02-10');
+SELECT 
+    FacultyName,
+    Department,
+    JoinDate
+FROM 
+    Faculty
+WHERE 
+    JoinDate = (SELECT MAX(JoinDate) FROM Faculty);
+
+8.4
+CREATE DATABASE AssessmentDB2;
+USE AssessmentDB2;
+CREATE TABLE Assessment (
+    StudentID INT,
+    StudentName VARCHAR(50),
+    CourseName VARCHAR(50),
+    Score INT
+);
+INSERT INTO Assessment (StudentID, StudentName, CourseName, Score) VALUES
+(101, 'POOJA', 'Math', 85),
+(102, 'LAYAA', 'Math', 72),
+(103, 'SUJAY', 'Math', 90),
+(104, 'PREMA', 'Science', 65),
+(105, 'DEVA', 'Science', 80),
+(106, 'MEENA', 'Science', 75),
+(107, 'HARITHAA', 'English', 88),
+(108, 'PRANAV', 'English', 79),
+(109, 'GOUTHAM', 'English', 92);
+SELECT 
+    CourseName,
+    StudentName,
+    Score
+FROM 
+    Assessment 
+WHERE 
+    Score > (
+        SELECT AVG(Score)
+        FROM Assessment
+        WHERE CourseName = Assessment.CourseName
+    )
+ORDER BY 
+    CourseName, Score DESC;

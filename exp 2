@@ -1,0 +1,24 @@
+create database department_db22;
+use department_db22;
+create table department(
+deptno varchar(15),
+deptname varchar(30),
+depthead varchar(30),
+gender char(1)
+);
+insert into department(deptno,deptname,depthead)values
+('123','cse','prems'),
+('456','aiml','laya'),
+('789','aids','pooju');
+select*from department;
+alter table department
+add primary key(deptno);
+desc department;
+alter table department
+add constraint unique_deptname
+unique(deptname);
+desc department;
+ALTER TABLE department
+ADD COLUMN Gender CHAR(1),
+ADD CONSTRAINT chk_gender CHECK (Gender IN ('M', 'F'));
+desc department;

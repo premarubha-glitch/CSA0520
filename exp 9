@@ -1,0 +1,102 @@
+EXP9.1
+create database facdept_db;
+use facdept_db;
+CREATE TABLE Faculty (
+    FacNo VARCHAR(10) PRIMARY KEY,
+    FacName VARCHAR(50),
+    DeptNo VARCHAR(10)
+);
+CREATE TABLE Department (
+    DeptNo VARCHAR(10) PRIMARY KEY,
+    DeptName VARCHAR(50)
+);
+INSERT INTO Faculty VALUES
+('F001', 'Dr. Prema', 'D001'),
+('F002', 'Dr. Layaa', 'D002'),
+('F003', 'Dr. Poojaa', 'D003'),
+('F004', 'Dr. Harithaa', 'D001'),
+('F005', 'Dr. Devaa', 'D004');
+INSERT INTO Department VALUES
+('D001', 'Computer Science'),
+('D002', 'Mathematics'),
+('D003', 'Physics'),
+('D004', 'Statistics');
+SELECT
+    faculty.facno,faculty.facname,department.deptno,department.deptname
+FROM Faculty CROSS JOIN Department
+
+
+EXP9.2
+create database studentscore_db;
+use studentscore_db; 
+CREATE TABLE Student (
+    StudentID VARCHAR(10) PRIMARY KEY,
+    StudentName VARCHAR(50)
+);
+CREATE TABLE course (
+    StudentID VARCHAR(10),
+    CourseNo VARCHAR(10),
+    Score INT
+);
+INSERT INTO Student (studentid,studentname)VALUES
+('S001', 'prema'),
+('S002', 'layaa'),
+('S003', 'pooja'),
+('S004', 'arthaa');
+INSERT INTO course (studentid,courseno,score) VALUES
+('S001', 'C001', 85),
+('S002', 'C002', NULL), 
+('S003', 'C001', 90),
+('S004', 'C003', NULL);  
+SELECT 
+    S.StudentName,
+    C.CourseNo
+FROM Student S
+INNER JOIN Course C
+ON S.StudentID = C.StudentID
+WHERE C.Score IS NULL;
+
+
+EXP9.3
+CREATE DATABASE CollegeDB3;
+USE CollegeDB3;
+CREATE TABLE DEPARTMENT (
+    DeptNo INT PRIMARY KEY,
+    DeptName VARCHAR(50) NOT NULL
+);
+CREATE TABLE FACULTY (
+    FacNo INT PRIMARY KEY,
+    FacName VARCHAR(50) NOT NULL,
+    DeptNo INT,
+    FOREIGN KEY (DeptNo) REFERENCES DEPARTMENT(DeptNo)
+);
+CREATE TABLE COURSE (
+    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseName VARCHAR(50) NOT NULL,
+    FacNo INT,
+    FOREIGN KEY (FacNo) REFERENCES FACULTY(FacNo)
+);
+INSERT INTO DEPARTMENT (DeptNo, DeptName)
+VALUES
+(01, 'Sales'),
+(02, 'ECE'),
+(03, 'CSE');
+INSERT INTO FACULTY (FacNo, FacName, DeptNo)
+VALUES
+(101, 'prema', 01),
+(102, 'pooja', 02),
+(103, 'layaa', 03);
+INSERT INTO COURSE (CourseName, FacNo)
+VALUES
+('Marketing Principles', 101),
+('Sales Management', 102),
+('Digital Electronics', 102),
+('Data Structures', 103);
+SELECT 
+    F.FacNo,
+    F.FacName,
+    D.DeptNo,
+    D.DeptName
+FROM FACULTY F
+JOIN DEPARTMENT D ON F.DeptNo = D.DeptNo
+WHERE D.DeptName = 'Sales' AND F.FacName = 'prema';

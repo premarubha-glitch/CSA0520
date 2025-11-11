@@ -1,0 +1,11 @@
+CREATE DATABASE student_db4;
+USE student_db4;
+CREATE TABLE student (
+    reg_no INT PRIMARY KEY,
+    name VARCHAR(50),
+    gender VARCHAR(10),
+    dob DATE,
+    mobile_no VARCHAR(15),
+    city VARCHAR(30)
+);
+select*from student;

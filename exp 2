@@ -1,24 +1,130 @@
-create database department_db22;
-use department_db22;
-create table department(
-deptno varchar(15),
-deptname varchar(30),
-depthead varchar(30),
-gender char(1)
+2.1
+CREATE DATABASE COLLEGE_8;
+USE COLLEGE_8;
+CREATE TABLE STUDENT2 (
+    RegNo      BIGINT(3),
+    Name       VARCHAR(30),
+    Gender     VARCHAR(15),
+    DOB        DATE,
+    MobileNo  BIGINT(10),
+    City       VARCHAR(15)
 );
-insert into department(deptno,deptname,depthead)values
-('123','cse','prems'),
-('456','aiml','laya'),
-('789','aids','pooju');
-select*from department;
-alter table department
-add primary key(deptno);
-desc department;
-alter table department
-add constraint unique_deptname
-unique(deptname);
-desc department;
-ALTER TABLE department
-ADD COLUMN Gender CHAR(1),
+ALTER TABLE STUDENT2
+ADD CONSTRAINT pk_student2 PRIMARY KEY (RegNo);
+INSERT INTO STUDENT2 (RegNo, Name, Gender, DOB, MobileNo, City)
+VALUES (201, 'Ravi Kumar', 'Male','2003-05-21', 9876501234, 'Delhi'),
+ (203, 'MAG', 'Male', '2002-09-30', 9923456789, 'Chennai');
+SELECT * FROM STUDENT2;
+
+
+2.2
+CREATE DATABASE COLLEGE_9;
+USE COLLEGE_9;
+CREATE TABLE FACULTY (
+    FacNo     VARCHAR(4),
+    FacName   VARCHAR(30),
+    Gender    CHAR(1),
+    DOB       DATE,
+    DOJ       DATE,
+    MobileNo  BIGINT(10),
+    Dept      VARCHAR(10)
+);
+ALTER TABLE FACULTY
+ADD CONSTRAINT pk_faculty PRIMARY KEY (FacNo);
+ALTER TABLE FACULTY
 ADD CONSTRAINT chk_gender CHECK (Gender IN ('M', 'F'));
-desc department;
+INSERT INTO FACULTY (FacNo, FacName, Gender, DOB, DOJ, MobileNo, Dept)
+VALUES ('F001', 'Bharathi', 'F','1985-06-12', '2010-07-01', 9876543210, 'CSE'),
+ ('F002', 'Rajesh', 'M','1979-03-25','2008-06-15', 9823456789, 'ECE');
+SELECT * FROM FACULTY;
+
+
+2.3
+CREATE DATABASE COLLEGE_01;
+USE COLLEGE_01;
+CREATE TABLE DEPARTMENT (
+    DeptNo    VARCHAR(4),
+    DeptName  VARCHAR(15),
+    DeptHead  VARCHAR(4)
+);
+ALTER TABLE DEPARTMENT
+ADD CONSTRAINT pk_department PRIMARY KEY (DeptNo);
+INSERT INTO DEPARTMENT (DeptNo, DeptName, DeptHead)
+VALUES ('D001', 'ComputerSci', 'F001'),
+('D002', 'Electronics', 'F002'),
+ ('D003', 'Mechanical', 'F003');
+SELECT * FROM DEPARTMENT;
+
+
+
+2.4
+CREATE DATABASE COLLEGE_02;
+USE COLLEGE_02;
+CREATE TABLE COURSE (
+    CourseNo    VARCHAR(3),
+    CourseDesc  VARCHAR(40),
+    CourseType  VARCHAR(15),
+    SemNo       CHAR(1),
+    HallNo      VARCHAR(4),
+    FacNo       VARCHAR(4)
+);
+ALTER TABLE COURSE
+ADD CONSTRAINT pk_course PRIMARY KEY (CourseNo);
+ALTER TABLE COURSE
+ADD CONSTRAINT chk_semno CHECK (SemNo BETWEEN '1' AND '6');
+INSERT INTO COURSE (CourseNo, CourseDesc, CourseType, SemNo, HallNo, FacNo)
+VALUES ('C01', 'Database Systems', 'Core', '5', 'H101', 'F001'),
+ ('C02', 'Data Structures', 'Core', '3', 'H102', 'F002'),
+ ('C03', 'Operating Systems', 'Core', '4', 'H103', 'F003');
+SELECT * FROM COURSE;
+
+
+2.5
+CREATE DATABASE COLLEGE_03;
+USE COLLEGE_03;
+CREATE TABLE STUDENT2 (
+    RegNo    BIGINT(3),
+    S1Name    VARCHAR(30),
+    Gender    VARCHAR(15),
+    DOB       DATE,
+    MobileNo  BIGINT(10),
+    City      VARCHAR(15)
+);
+ALTER TABLE STUDENT2
+ADD CONSTRAINT uq_student2_s1name UNIQUE (S1Name);
+ALTER TABLE STUDENT2
+ADD CONSTRAINT pk_student2 PRIMARY KEY (RegNo);
+INSERT INTO STUDENT2 (RegNo, S1Name, Gender, DOB, MobileNo, City)
+VALUES (301, 'PREMA', 'Female', '2003-05-21', 9876501234, 'Delhi'),
+ (302, 'POOJA', 'Female', '2004-07-15', 9812345678, 'Mumbai'),
+(303, 'LAYA', 'Female', '2002-09-30', 9923456789, 'Chennai');
+SELECT * FROM STUDENT2;
+
+
+
+2.6
+CREATE DATABASE COLLEGE_08;
+USE COLLEGE_08;
+CREATE TABLE STUDENT2 (
+    RegNo    BIGINT(3) PRIMARY KEY,
+    S1Name    VARCHAR(30),
+    Gender    VARCHAR(15),
+    DOB       DATE,
+    MobileNo  BIGINT(10),
+    City      VARCHAR(15)
+);
+CREATE TABLE STUDENT3 (
+    S1_ID     BIGINT(3),
+    RegNo     BIGINT(3),
+    CourseNo  VARCHAR(3),
+    Marks     BIGINT(3)
+);
+INSERT INTO STUDENT2 (RegNo, S1Name, Gender, DOB, MobileNo, City)
+VALUES
+(201, 'Arun', 'Male', '2004-04-15', 9876543210, 'Chennai'),
+(202, 'Keerthi', 'Female', '2005-07-11', 9123456780, 'Coimbatore');
+ALTER TABLE STUDENT3
+ADD CONSTRAINT fk_stud3_regno
+FOREIGN KEY (RegNo)
+REFERENCES STUDENT2(RegNo);
+SELECT * FROM STUDENT2;

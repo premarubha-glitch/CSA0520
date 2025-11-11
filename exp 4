@@ -1,0 +1,18 @@
+create database student_db12;
+use student_db12;
+CREATE TABLE Student (
+    RegisterNumber VARCHAR(15) PRIMARY KEY,
+    StudentName VARCHAR(50),
+    Department VARCHAR(30),
+    Year INT,
+    Age INT
+);
+INSERT INTO Student (RegisterNumber, StudentName, Department, Year, Age)
+VALUES
+('192511095', 'layaa', 'CSE', 3, 20),
+('192511111', 'pooja', 'CSE', 3, 21),
+('192525020', 'Prema', 'AIML', 2, 19);
+UPDATE Student
+SET StudentName = 'haritha'
+WHERE RegisterNumber = '192525020';
+SELECT * FROM Student ;

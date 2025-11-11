@@ -1,0 +1,57 @@
+exp 3.1
+
+CREATE DATABASE student_db7;
+USE student_db7;
+CREATE TABLE student (
+    reg_no INT PRIMARY KEY,
+    name VARCHAR(50),
+    gender VARCHAR(10),
+    dob DATE,
+    mobile_no VARCHAR(15),
+    city VARCHAR(30)
+);
+
+INSERT INTO student (reg_no, name, gender, dob, mobile_no, city)
+VALUES
+(101, 'Arjun', 'Male', '2002-05-14', '9876543210', 'Chennai'),
+(102, 'Priya', 'Female', '2003-08-21', '9123456780', 'Mumbai'),
+(103, 'Rahul', 'Male', '2002-11-09', '9098765432', 'Kolkata'),
+(104, 'Sneha', 'Female', '2004-02-25', '9812345678', 'Bangalore');
+select*from student;
+
+exp 3.2
+
+create database department_db17;
+use department_db17;
+create table department(
+deptno varchar(15),
+deptname varchar(30),
+depthead varchar(30),
+gender char(1)
+);
+insert into department(deptno,deptname,depthead)values
+('123','cse','prems'),
+('456','aiml','laya'),
+('789','aids','pooju');
+select*from department;
+
+exp 3.3
+
+create database faculty_db7;
+use faculty_db7;
+CREATE TABLE FACULTY (
+    FacNo INT PRIMARY KEY,
+    FacName VARCHAR(50),
+    Gender CHAR(1),
+    DOB DATE,
+    DOJ DATE,
+    MobileNo VARCHAR(10),
+    Resigned char(1)
+);
+INSERT INTO FACULTY (FacNo, FacName, Gender, DOB, DOJ, MobileNo, Resigned)
+VALUES 
+(101, 'Anita', 'F', '2007-03-12', '2023-06-01', '9876543210', 'n'),
+(102, 'prema', 'F', '2008-11-25', '2022-09-15', '9123456789', 'y' ),
+(103, 'layaa', 'F', '2005-03-12', '2020-06-01', '9876545678', 'y'),
+(104, 'poojaa', 'F', '2006-11-25', '2021-09-15', '9123456559', 'y');
+select*from faculty;

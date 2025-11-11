@@ -1,0 +1,212 @@
+exp 6.1
+
+create database course_db25;
+use course_db25;
+CREATE TABLE COURSE (
+    CourseID     VARCHAR(10) PRIMARY KEY,
+    CourseName   VARCHAR(50),
+    CourseType   VARCHAR(20),
+    SemNo        INT,
+    HallNo       VARCHAR(10)
+);
+INSERT INTO COURSE (CourseID, CourseName, CourseType, SemNo, HallNo)
+VALUES
+('C101', 'Statistics', 'mandatory', 2, 'H10'),
+('C102', 'Programming', 'elective', 2, 'H11'),
+('C103', 'Mathematics', 'elective', 1, 'H12'),
+('C104', 'Database', 'mandatory', 3, 'H13');
+SELECT CourseName, CourseType
+FROM COURSE
+WHERE CourseName IN ('Statistics', 'Programming');
+
+
+exp 6.2
+
+create database course_db26;
+use course_db26;
+CREATE TABLE SCORE (
+    CourseNo     VARCHAR(10) PRIMARY KEY,
+    CourseName   VARCHAR(50),
+    Score        INT
+);
+INSERT INTO SCORE (CourseNo, CourseName, Score)
+VALUES
+('C101', 'Statistics', 78),
+('C102', 'Programming', 65),
+('C103', 'Mathematics', 45),
+('C104', 'Database', 82),
+('C105', 'Networking', 55);
+SELECT CourseNo, CourseName, Score
+FROM SCORE
+WHERE Score BETWEEN 50 AND 80;
+
+
+exp 6.3
+
+create database studentscore_db27;
+use studentscore_db27;
+CREATE TABLE studentscore (
+    StudentID   VARCHAR(10),
+    CourseNo    VARCHAR(10),
+    Marks       INT
+);
+INSERT INTO studentscore (StudentID, CourseNo, Marks)
+VALUES
+('S001', 'C001', 75),
+('S002', 'C002', 80),
+('S003', 'C002', 70),
+('S004', 'C003', 65),
+('S005', 'C002', 90),
+('S006', 'C001', 60);
+SELECT AVG(Marks)
+FROM studentscore
+WHERE CourseNo = 'C002'
+GROUP BY CourseNo;
+
+
+exp 6.4
+
+create database studentscore_db28;
+use studentscore_db28;
+CREATE TABLE studentscore (
+    StudentID   VARCHAR(10),
+    CourseNo    VARCHAR(10),
+    Marks       INT
+);
+INSERT INTO studentscore (StudentID, CourseNo, Marks)
+VALUES
+('S001', 'C001', 75),
+('S002', 'C002', 80),
+('S003', 'C002', 70),
+('S004', 'C003', 65),
+('S005', 'C002', 90),
+('S006', 'C001', 60);
+SELECT CourseNo,
+    MAX(Marks),
+    MIN(Marks)
+FROM studentscore
+WHERE CourseNo = 'C002'
+GROUP BY CourseNo;
+
+
+exp 6.5
+
+create database studentscore_db29;
+use studentscore_db29;
+CREATE TABLE studentscore (
+    StudentID VARCHAR(10),
+    CourseNo VARCHAR(10),
+    Score INT
+);
+INSERT INTO studentscore(studentid,courseno,score) VALUES
+('S001', 'C001', 78),
+('S002', 'C001', 85),
+('S003', 'C001', 90),
+('S004', 'C002', 60),
+('S005', 'C002', 75),
+('S006', 'C002', 80);
+SELECT CourseNo,
+    MAX(Score),
+    MIN(Score) ,
+    AVG(Score)
+FROM studentscore
+GROUP BY Courseno;
+
+exp 6.6
+
+create database studentscore_db30;
+use studentscore_db30;
+CREATE TABLE StudentScore (
+    StudentID VARCHAR(10),
+    CourseNo VARCHAR(10),
+    CourseName VARCHAR(50),
+    Score INT
+);
+INSERT INTO StudentScore (studentid,courseno,coursename,score)VALUES
+('S001', 'C001', 'Statistics', 78),
+('S002', 'C001', 'Statistics', 85),
+('S003', 'C001', 'Statistics', 90),
+('S004', 'C002', 'Programming', 60),
+('S005', 'C002', 'Programming', 75),
+('S006', 'C002', 'Programming', 80),
+('S007', 'C003', 'Mathematics', 88),
+('S008', 'C003', 'Mathematics', 92);
+SELECT CourseName,
+    AVG(Score)
+FROM StudentScore
+GROUP BY CourseName;
+
+
+exp 6.7
+
+create database studentscore_db32;
+use studentscore_db32;
+CREATE TABLE StudentScore (
+    StudentID VARCHAR(10),
+    CourseNo VARCHAR(10),
+    CourseName VARCHAR(50),
+    Score INT
+);
+INSERT INTO StudentScore (studentid,courseno,coursename,score)VALUES
+('S001', 'C001', 'Statistics', 78),
+('S002', 'C001', 'Statistics', 85),
+('S003', 'C001', 'Statistics', 90),
+('S004', 'C002', 'Programming', 60),
+('S005', 'C002', 'Programming', 75),
+('S006', 'C002', 'Programming', 80),
+('S007', 'C003', 'Mathematics', 88),
+('S008', 'C003', 'Mathematics', 92);
+SELECT sum(score)
+FROM StudentScore
+GROUP BY CourseName;
+
+
+exp 6.8
+
+
+create database studentscore_db34;
+use studentscore_db34;
+CREATE TABLE StudentScore (
+    StudentID VARCHAR(10),
+    CourseNo VARCHAR(10),
+    CourseName VARCHAR(50),
+    Score INT
+);
+INSERT INTO StudentScore (studentid,courseno,coursename,score)VALUES
+('S001', 'C001', 'Statistics', 78),
+('S002', 'C001', 'Statistics', 85),
+('S003', 'C001', 'Statistics', 90),
+('S004', 'C002', 'Programming', 60),
+('S005', 'C002', 'Programming', 75),
+('S006', 'C002', 'Programming', 80),
+('S007', 'C003', 'Mathematics', 88),
+('S008', 'C003', 'Mathematics', 92);
+SELECT 
+    CourseName,
+    COUNT(StudentID)
+FROM StudentScore
+GROUP BY CourseName;
+
+
+exp 6.9
+
+create database studentscore_db37;
+use studentscore_db37;
+CREATE TABLE StudentScore (
+    StudentID VARCHAR(10),
+    CourseNo VARCHAR(10),
+    CourseName VARCHAR(50),
+    Score INT
+);
+INSERT INTO StudentScore (studentid,courseno,coursename,score)VALUES
+('S001', 'C001', 'Statistics', 78),
+('S002', 'C001', 'Statistics', 85),
+('S003', 'C001', 'Statistics', 90),
+('S004', 'C002', 'Programming', 60),
+('S005', 'C002', 'Programming', 75),
+('S006', 'C002', 'Programming', 80),
+('S007', 'C003', 'Mathematics', 88),
+('S008', 'C003', 'Mathematics', 92);
+select studentid,count(coursename)
+from studentscore
+group by studentid;

@@ -1,0 +1,47 @@
+10.1
+CREATE DATABASE CompanyDB;
+USE CompanyDB;
+CREATE TABLE employees1 (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10,2)
+);
+INSERT INTO employees1 (employee_id, employee_name, department, salary) VALUES
+(101, 'POOJA', 'HR', 45000.00),
+(102, 'SUJAY', 'Finance', 52000.00),
+(103, 'LAYAA', 'IT', 60000.00),
+(104, 'PREMA', 'Sales', 48000.00),
+(105, 'HARITHAA', 'IT', 65000.00);
+CREATE VIEW v1 AS
+SELECT 
+    employee_id,
+    salary
+FROM 
+    employees1;
+SELECT * FROM v1;
+
+10.2
+CREATE DATABASE CompanyDB02;
+USE CompanyDB02;
+CREATE TABLE employees1 (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10,2)
+);
+INSERT INTO employees1 (employee_id, employee_name, department, salary) VALUES
+(101, 'Arun', 'HR', 45000.00),
+(102, 'Bina', 'Finance', 52000.00),
+(103, 'Kiran', 'IT', 60000.00);
+CREATE VIEW v1 AS
+SELECT employee_id, salary
+FROM employees1;
+SELECT * FROM v1;
+INSERT INTO v1 (employee_id, salary)
+VALUES (104, 48000.00);
+
+SELECT * FROM v1;
+DELETE FROM v1
+WHERE employee_id = 102;
+SELECT * FROM v1;

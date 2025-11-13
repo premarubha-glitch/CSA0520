@@ -1,0 +1,48 @@
+18
+SHOW TABLES;
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+INSERT INTO employees (name, email) VALUES
+('Alice', 'alice@example.com'),
+('Bob', 'bob@example.com'),
+('Charlie', 'charlie@example.com');
+
+select * from employees;
+
+DELIMITER $$
+
+CREATE PROCEDURE get_email_list()
+BEGIN
+
+    DECLARE done INT DEFAULT 0;
+    DECLARE emp_email VARCHAR(100);
+
+    DECLARE email_cursor CURSOR FOR 
+        SELECT email FROM employees;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN email_cursor;
+
+
+    read_loop: LOOP
+        FETCH email_cursor INTO emp_email;
+
+        IF done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        SELECT emp_email;
+    END LOOP;
+
+
+    CLOSE email_cursor;
+END$$
+
+DELIMITER ;
+
+CALL get_email_list();

@@ -1,0 +1,39 @@
+16.1
+create database studentdb13;
+use studentdb13;
+DELIMITER $$
+
+CREATE PROCEDURE get_all_students()
+BEGIN
+    SELECT * FROM student_info;
+END $$
+
+DELIMITER ;
+CALL get_all_students();
+
+
+16.2
+create database GetCustomerLevel5;
+use GetCustomerLevel5;
+DELIMITER $$
+CREATE PROCEDURE GetCustomerLevel(
+    IN p_customerNumber INT,         
+    OUT p_customerLevel VARCHAR(20)  
+)
+BEGIN
+    DECLARE credit DECIMAL(10,2);  
+    SELECT creditLimit 
+    INTO credit
+    FROM customers
+    WHERE customerNumber = p_customerNumber;
+    IF credit > 10000 THEN
+        SET p_customerLevel = 'PLATINUM';
+    ELSEIF credit BETWEEN 5000 AND 10000 THEN
+        SET p_customerLevel = 'GOLD';
+    ELSE
+        SET p_customerLevel = 'SILVER';
+    END IF;
+END $$
+DELIMITER ;
+CALL GetCustomerLevel(101, @level);
+SELECT @level AS Customer_Level;

@@ -1,0 +1,24 @@
+create database class_db;
+use class_db;
+CREATE TABLE class (
+    id INT,
+    name VARCHAR(30)
+);
+INSERT INTO class VALUES (1, 'ram');
+INSERT INTO class VALUES (2, 'sam');
+INSERT INTO class VALUES (3, 'ravi');
+INSERT INTO class VALUES (4, 'teja');
+INSERT INTO class VALUES (5, 'john');
+SELECT * FROM class;
+UPDATE class SET name = 'bravo' WHERE id = 5;
+SAVEPOINT A;
+INSERT INTO class VALUES (6, 'uppal');
+SAVEPOINT B;
+INSERT INTO class VALUES (7, 'balu');
+SAVEPOINT C;
+SELECT * FROM class;
+ROLLBACK TO SAVEPOINT B;
+SELECT * FROM class;
+ROLLBACK TO SAVEPOINT A;
+SELECT * FROM class;
+COMMIT;

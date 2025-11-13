@@ -1,0 +1,50 @@
+13.1
+create database db04;
+use db04;
+DELIMITER $$
+
+CREATE FUNCTION get_income_level(monthly_value INT)
+RETURNS VARCHAR(20)
+DETERMINISTIC
+BEGIN
+  DECLARE income_level VARCHAR(20);
+
+  SET income_level = CASE
+    WHEN monthly_value <= 4000 THEN 'Low Income'
+    WHEN monthly_value <= 5000 THEN 'Avg Income'
+    ELSE 'High Income'
+  END;
+
+  RETURN income_level;
+END$$
+
+DELIMITER ;
+SELECT get_income_level(3500);  -- Output: Low Income
+SELECT get_income_level(4800);  -- Output: Avg Income
+SELECT get_income_level(6000);  -- Output: High Income
+
+13.2
+create database db05;
+use db05;
+DELIMITER $$
+
+CREATE FUNCTION check_income(income INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  income_loop: LOOP
+    IF income < 4000 THEN
+      SET income = income + 500;   -- increase income gradually
+      ITERATE income_loop;          -- repeat the loop
+    ELSE
+      LEAVE income_loop;            -- exit the loop when income ≥ 4000
+    END IF;
+  END LOOP income_loop;
+
+  RETURN income;
+END$$
+
+DELIMITER ;
+SELECT check_income(2500);  -- Output: 4000
+SELECT check_income(3900);  -- Output: 4000
+SELECT check_income(4100);  -- Output: 4100

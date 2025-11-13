@@ -1,0 +1,33 @@
+19
+create database studentdb34;
+use studentdb34;
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(100)
+);
+INSERT INTO student VALUES 
+(1, 'Ram', 'ram@gmail.com'),
+(2, 'Teja', 'teja@gmail.com'),
+(3, 'Ravi', 'ravi@gmail.com');
+CREATE TABLE employees_audit (
+    audit_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    old_name VARCHAR(50),
+    old_email VARCHAR(100),
+    changed_at DATETIME
+);
+DELIMITER $$
+CREATE TRIGGER before_student_update
+BEFORE UPDATE ON student
+FOR EACH ROW
+BEGIN
+    INSERT INTO employees_audit (student_id, old_name, old_email, changed_at)
+    VALUES (OLD.id, OLD.name, OLD.email, NOW());
+END $$
+DELIMITER ;
+UPDATE student 
+SET name = 'Ram Kumar', email = 'ramk@gmail.com' 
+WHERE id = 1;
+SELECT * FROM employees_audit;
+SELECT * FROM student;

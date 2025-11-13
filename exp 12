@@ -1,0 +1,35 @@
+12.1
+create database db01;
+use db01;
+DELIMITER ##
+CREATE PROCEDURE test_mysql_While_Loop()
+BEGIN
+    DECLARE x INT;
+    DECLARE str VARCHAR(500);
+    set x=1;
+    set str= '';
+    WHILE x <= 5 DO
+        SET str = CONCAT(str,x, ', ');
+        SET x = x + 1;
+    END WHILE;
+    SELECT str ;
+END##
+DELIMITER ;
+CALL test_mysql_While_Loop();
+
+12.2
+DELIMITER ##
+CREATE PROCEDURE test_mysql_While_Loop()
+BEGIN
+    DECLARE x INT;
+    DECLARE str VARCHAR(500);
+    set x=1;
+    set str= '';
+    WHILE x <= 5 DO
+        SET str = CONCAT(str,x, ', ');
+        SET x = x + 1;
+    END WHILE;
+    SELECT str ;
+END##
+DELIMITER ;
+CALL test_mysql_While_Loop();

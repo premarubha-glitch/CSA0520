@@ -1,0 +1,54 @@
+17.1
+DELIMITER $$
+
+CREATE FUNCTION get_customer_level(credit_limit DECIMAL(10,2))
+RETURNS VARCHAR(20)
+DETERMINISTIC
+BEGIN
+    DECLARE customer_level VARCHAR(20);
+
+    IF credit_limit > 50000 THEN
+        SET customer_level = 'PLATINUM';
+    ELSEIF credit_limit >= 10000 AND credit_limit <= 50000 THEN
+        SET customer_level = 'GOLD';
+    ELSE
+        SET customer_level = 'SILVER';
+    END IF;
+
+    RETURN customer_level;
+END$$
+
+DELIMITER ;
+SELECT get_customer_level(75000) AS level;  -- Returns 'PLATINUM'
+SELECT get_customer_level(25000) AS level;  -- Returns 'GOLD'
+SELECT get_customer_level(5000) AS level;   -- Returns 'SILVER'
+SELECT get_customer_level(10000) AS level;   -- Returns 'SILVER'
+SELECT get_customer_level(500) AS level;   -- Returns 'SILVER'
+
+17.2
+DELIMITER $$
+
+CREATE PROCEDURE factorial(IN n INT, OUT result BIGINT)
+BEGIN
+    -- Declare variables at the very beginning
+    DECLARE temp BIGINT;
+
+    -- Base case
+    IF n = 0 OR n = 1 THEN
+        SET result = 1;
+    ELSE
+        -- Recursive case
+        CALL factorial(n - 1, temp);
+        SET result = n * temp;
+    END IF;
+END$$
+
+DELIMITER ;
+
+-- Set recursion limit (e.g., 100)
+SET @@max_sp_recursion_depth = 100;
+
+-- Then call the procedure
+SET @fact_result = 0;
+CALL factorial(5, @fact_result);
+SELECT @fact_result;  -- Output: 120
